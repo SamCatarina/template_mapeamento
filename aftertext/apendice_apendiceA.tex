@@ -5,12 +5,12 @@
 \begin{longtable}{|p{6.0cm}|p{2.1cm}|p{3.0cm}|p{4.0cm}|}
 \caption{Fichamento das questões das features identificadas pelas análises com Random Forest e SHAP values} \\
 \hline
- \textbf{Questionamento} & \textbf{Tipo} & \textbf{Opções} & \textbf{Feature} \\
+ \textbf{Questionamento} & \textbf{Tipo} & \textbf{Opções Simplificadas} & \textbf{Feature} \\
 \hline
 \endfirsthead
 
 \hline
- \textbf{Questionamento} & \textbf{Tipo} & \textbf{Opções} & \textbf{Feature} \\
+ \textbf{Questionamento} & \textbf{Tipo} & \textbf{Opções Simplificadas} & \textbf{Feature} \\
 \hline
 \endhead
 
@@ -83,6 +83,68 @@ Raramente;
 
 Não
   & \seqsplit{childhoodHobbiesTime} \\
+\hline
+Você já sentiu, em algum momento, que as áreas de ciência,
+                    tecnologia, engenharia ou matemática (STEM) não eram para
+                    você?
+  & Seleção única
+  & Sim;
+Não;
+
+Nunca pensei sobre;
+  & \seqsplit{feltSTEMNotForMeEver} \\
+\hline
+
+ Os professores das ciências exatas que já admirei, em sua
+                    maioria, são:
+  & Seleção única
+  & Masculino;
+Feminino;
+
+Ambos;
+Nenhum;
+  & \seqsplit{admiredExactTeachersGender} \\
+\hline
+
+
+Na sua experiência escolar, quem você percebia demonstrar
+                    mais interesse por disciplinas da área de exatas (como
+                    matemática, física, química ou tecnologia)?
+  & Seleção única
+  & Meninas;
+Meninos;
+
+Não observo diferença;
+  & \seqsplit{schoolExactInterestByGender} \\
+\hline
+
+De que forma sua família valorizava seu desempenho escolar
+                    durante sua trajetória na educação básica?
+  & Seleção única
+  & Muito;
+  Moderadamente;
+  Eventualmente;
+  Não demonstrava interesse;
+  Não valorizava
+  & \seqsplit{familySchoolPerformanceValue} \\
+
+\hline
+
+Você já teve interesse em seguir uma carreira na área de
+                    STEM (Ciência, Tecnologia, Engenharia ou Matemática)?
+  & Seleção única
+  & Sim;
+  Não;
+  Não tenho certeza;
+  & \seqsplit{stemCareerEverInterest} \\
+
+\hline
+
+
+Me sinto excluído(a) em conversas sobre assuntos de exatas (física, matemática, química)
+  & Seleção única
+  & Escala likert
+  & \seqsplit{feelingExcludedExact} \\
 \hline
 
 \end{longtable}

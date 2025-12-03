@@ -125,11 +125,6 @@ na qual $\hat{y}_i$ representa a predição do modelo para o \textit{catchment} 
 sendo a média global das predições em todos os \textit{catchments}. Assim, como descreve explicitamente o artigo, os valores SHAP permitem interpretar a saída do modelo ao decompor sua predição em efeitos individuais atribuídos a cada variável, fornecendo transparência e suporte à interpretabilidade no contexto de Explainable Artificial Intelligence (XAI).
 
 
-
-3. Uso de XAI para entender vieses de gênero, justiça algorítmica e tomadas de decisão baseadas em dados.
-
-4. Explicar Random Forest e seu uso para detectar as variáveis importantes com SHAP
-
 O algoritmo \textit{Random Forest}, proposto por \cite{breiman2001_random_forests}, é um método de aprendizado supervisionado baseado na combinação de múltiplas árvores de decisão. Em vez de treinar uma única árvore, o modelo constrói centenas ou milhares delas, cada uma gerada a partir de uma amostra aleatória do conjunto de dados original, obtida pelo método de \textit{bootstrap}. Esse procedimento consiste em selecionar exemplos aleatoriamente com reposição, de modo que cada árvore é treinada com um subconjunto ligeiramente diferente dos dados. Além disso, em cada divisão interna da árvore, apenas um subconjunto aleatório das variáveis é disponibilizado para escolha da melhor divisão. Essa dupla aleatoriedade — nos exemplos e nos atributos — reduz a correlação entre as árvores, aumenta a diversidade da floresta e torna o modelo mais robusto, estável e resistente ao \textit{overfitting} (situação em que o modelo aprende padrões específicos e ruídos do conjunto de treino, perdendo capacidade de generalização para novos dados), mesmo quando muitas árvores são utilizadas.
 
 Uma característica importante do Random Forest é o uso das chamadas amostras \textit{out-of-bag} (OOB). Durante a criação de cada árvore, aproximadamente um terço das observações não é selecionado na amostra \textit{bootstrap}. Esses exemplos que ``ficam de fora'' são chamados de OOB e funcionam como uma espécie de conjunto de validação interno. Assim, cada árvore dispõe de exemplos que não foram usados em seu treinamento e que permitem avaliar seu desempenho sem necessidade de um conjunto externo de teste. Esse mecanismo interno de validação é central para o cálculo da importância das variáveis.

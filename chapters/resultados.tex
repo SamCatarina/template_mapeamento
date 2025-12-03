@@ -5,6 +5,8 @@
 
 A pesquisa foi desenvolvida por meio da aplicação de um questionário estruturado, direcionado a estudantes do Ensino Superior público da cidade de Salgueiro, localizada no Sertão Central de Pernambuco. Ao todo, foram obtidas 88 respostas válidas, constituindo a base de dados utilizada nas análises subsequentes. O instrumento contemplou questões voltadas à trajetória de interesse dos respondentes em áreas STEM, tanto ao longo do tempo quanto no momento atual, bem como perguntas que investigavam fatores associados ao afastamento (ou permanência) nessas áreas. Além disso, o questionário abrangeu aspectos relacionados às motivações que influenciaram a escolha do curso superior escolhido e incluiu variáveis demográficas, como sexo, escolaridade dos pais, entre outras.
 
+No Apêndice~\ref{apendiceA}, encontra-se a estrutura de perguntas e opções de respostas das principais perguntas do questionário aplicado.
+
 Para as etapas de modelagem e clusterização, foi realizado um tratamento prévio dos dados com o objetivo de garantir consistência, comparabilidade e alinhamento teórico com a literatura sobre interesse em STEM. Inicialmente, foram selecionadas apenas as variáveis diretamente relacionadas aos fatores identificados na revisão bibliográfica como influentes no interesse ou desinteresse por áreas STEM — tais como percepções de pertencimento, apoio familiar e escolar, histórico de interesse, experiências de exclusão e indicadores de estereótipos de gênero. Essa seleção teve como finalidade evitar que variáveis não relacionadas ao fenômeno investigado interferissem na formação dos clusters. Em seguida, as variáveis ordinais foram codificadas respeitando a ordem natural de suas categorias, enquanto os atributos nominais foram convertidos por meio de Label Encoding (técnica que substitui cada categoria por um número inteiro, permitindo que variáveis categóricas sejam utilizadas por algoritmos que exigem entradas numéricas). Após garantir que todos os valores estivessem em formato numérico, foi aplicado o método de normalização Min–Max em todas as colunas, exceto a variável alvo “gender”, pois já se encontrava com valores limitados à 0 e 1, de modo a preservar a proporcionalidade entre escalas e evitar distorções nas distâncias utilizadas pelos algoritmos de agrupamento. O conjunto final de dados, contendo apenas as variáveis selecionadas e devidamente tratadas, foi então utilizado para as análises e métodos de clusterização apresentados nos capítulos seguintes.
 
 \begin{figure}[H]
@@ -42,6 +44,10 @@ Após a definição desse subconjunto de variáveis, o conjunto de dados foi car
 Uma vez treinado, o modelo foi interpretado por meio dos valores SHAP aplicados sobre as amostras de teste, permitindo identificar de forma transparente como cada um desses fatores relacionados ao interesse por STEM contribui para as predições da variável \textit{gender}. No gráfico de SHAP resultante, valores mais vermelhos indicam maior probabilidade de o respondente ser do gênero feminino, enquanto valores mais azuis indicam menor probabilidade, ou seja, maior associação com o gênero masculino.
 
 A análise inicial foi conduzida utilizando a base completa de respondentes, sem separação por gênero. O gráfico de SHAP oferece uma visão global dos principais fatores que distinguem respondentes do gênero feminino e masculino, permitindo observar tanto a relevância relativa de cada variável quanto a direção de seus efeitos.
+
+%citar o apendice c
+No Apêndice~\ref{apendiceC}, encontra-se a tabela de tradução das features utilizadas neste gráfico, facilitando a compreensão dos termos técnicos empregados.
+
 
 \begin{figure}[H]
   \centering
@@ -173,7 +179,7 @@ Os dois grupos formados apresentam tamanhos distintos: o \textbf{Cluster 1} com 
 
 \subsection{Interpretação dos Perfis Identificados}
 
-A Tabela no Apêndice~\ref{apendiceA} (resultante dos cruzamentos das variáveis com os clusters) permite inferir características marcantes de cada grupo.
+A Tabela no Apêndice~\ref{apendiceB} (resultante dos cruzamentos das variáveis com os clusters) permite visualizar as características de cada grupo.
 
 
 \subsubsection*{Cluster 1: Perfil com maior interesse e engajamento em STEM }

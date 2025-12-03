@@ -1,0 +1,235 @@
+
+\chapter{Resultados}\label{resultados}
+
+\section{Caracterização da Amostra e Análise Exploratória dos Dados}
+
+A pesquisa foi desenvolvida por meio da aplicação de um questionário estruturado, direcionado a estudantes do Ensino Superior público da cidade de Salgueiro, localizada no Sertão Central de Pernambuco. Ao todo, foram obtidas 88 respostas válidas, constituindo a base de dados utilizada nas análises subsequentes. O instrumento contemplou questões voltadas à trajetória de interesse dos respondentes em áreas STEM, tanto ao longo do tempo quanto no momento atual, bem como perguntas que investigavam fatores associados ao afastamento (ou permanência) nessas áreas. Além disso, o questionário abrangeu aspectos relacionados às motivações que influenciaram a escolha do curso superior escolhido e incluiu variáveis demográficas, como sexo, escolaridade dos pais, entre outras.
+
+Para as etapas de modelagem e clusterização, foi realizado um tratamento prévio dos dados com o objetivo de garantir consistência, comparabilidade e alinhamento teórico com a literatura sobre interesse em STEM. Inicialmente, foram selecionadas apenas as variáveis diretamente relacionadas aos fatores identificados na revisão bibliográfica como influentes no interesse ou desinteresse por áreas STEM — tais como percepções de pertencimento, apoio familiar e escolar, histórico de interesse, experiências de exclusão e indicadores de estereótipos de gênero. Essa seleção teve como finalidade evitar que variáveis não relacionadas ao fenômeno investigado interferissem na formação dos clusters. Em seguida, as variáveis ordinais foram codificadas respeitando a ordem natural de suas categorias, enquanto os atributos nominais foram convertidos por meio de Label Encoding (técnica que substitui cada categoria por um número inteiro, permitindo que variáveis categóricas sejam utilizadas por algoritmos que exigem entradas numéricas). Após garantir que todos os valores estivessem em formato numérico, foi aplicado o método de normalização Min–Max em todas as colunas, exceto a variável alvo “gender”, pois já se encontrava com valores limitados à 0 e 1, de modo a preservar a proporcionalidade entre escalas e evitar distorções nas distâncias utilizadas pelos algoritmos de agrupamento. O conjunto final de dados, contendo apenas as variáveis selecionadas e devidamente tratadas, foi então utilizado para as análises e métodos de clusterização apresentados nos capítulos seguintes.
+
+\begin{figure}[H]
+    \centering
+    \caption{Número de respondentes por gênero}
+    \includegraphics[width=0.9\textwidth]{images/graficos_exploratoria/grafico_gender.png}
+    \label{fig:grafico_gender}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Número de respondentes por curso}
+    \includegraphics[width=0.9\textwidth]{images/graficos_exploratoria/grafico_coursename.png}
+    \label{fig:grafico_coursename}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Número de respondentes por área geral do curso}
+    \includegraphics[width=0.9\textwidth]{images/graficos_exploratoria/grafico_courseareageneral.png}
+    \label{fig:grafico_courseareageneral}
+\end{figure}
+
+
+
+
+\section{Modelo de Classificação e Análise das Variáveis mais Importantes}
+
+\subsection{Análise com ambos os gêneros}
+
+Para esta etapa da análise, foi realizada uma seleção prévia de variáveis, mantendo-se apenas aquelas diretamente relacionadas a STEM e aos fatores identificados na literatura como influenciadores do interesse — ou da falta de interesse — por carreiras nessa área. Essa filtragem inicial teve o objetivo de garantir que o modelo analisasse exclusivamente os elementos associados ao interesse em STEM, permitindo que a interpretação com SHAP refletisse apenas esses fatores específicos, sem interferência de variáveis externas ao fenômeno investigado. Além disso, considerando o número reduzido de respondentes (n = 88), optou-se por trabalhar com apenas oito variáveis, assegurando maior estabilidade nas estimativas e evitando sobreajuste.
+
+Após a definição desse subconjunto de variáveis, o conjunto de dados foi carregado e a variável-alvo \textit{gender} foi separada das demais variáveis explicativas selecionadas. Em seguida, os dados foram divididos em treino e teste, e um modelo de \textit{Random Forest Classifier} foi ajustado com base nesse conjunto filtrado, com o objetivo de predizer a probabilidade de cada respondente pertencer ao gênero feminino. 
+
+Uma vez treinado, o modelo foi interpretado por meio dos valores SHAP aplicados sobre as amostras de teste, permitindo identificar de forma transparente como cada um desses fatores relacionados ao interesse por STEM contribui para as predições da variável \textit{gender}. No gráfico de SHAP resultante, valores mais vermelhos indicam maior probabilidade de o respondente ser do gênero feminino, enquanto valores mais azuis indicam menor probabilidade, ou seja, maior associação com o gênero masculino.
+
+A análise inicial foi conduzida utilizando a base completa de respondentes, sem separação por gênero. O gráfico de SHAP oferece uma visão global dos principais fatores que distinguem respondentes do gênero feminino e masculino, permitindo observar tanto a relevância relativa de cada variável quanto a direção de seus efeitos.
+
+\begin{figure}[H]
+  \centering
+  \caption{Gráfico de SHAP para o modelo de classificação de gênero}
+  \includegraphics[width=0.9\textwidth]{images/geral_stem/shap2.png}
+  \label{fig:shap_geral_gender}
+\end{figure}
+
+
+
+
+\subsubsection{Interpretação do Padrão de Cores no Gráfico de SHAP}
+
+Nos gráficos de interpretação de SHAP, os pontos são coloridos conforme o valor original da feature: valores altos são representados na cor vermelha, enquanto valores baixos são representados em azul. No caso da variável alvo “gênero”, valores mais vermelhos indicam maior probabilidade de o respondente ser do gênero feminino, enquanto pontos mais azuis indicam maior probabilidade de pertencer ao gênero masculino. Essa distinção visual permite compreender a direção das relações entre as variáveis explicativas e a probabilidade de o modelo predizer um determinado gênero.
+
+\subsubsection{Sentimento de Exclusão em Tecnologia (\textit{feelingExcludedTech})}
+
+Esta foi a variável mais relevante para distinguir gêneros. Valores mais altos de \textit{feelingExcludedTech} estão fortemente associados ao gênero feminino, indicando que meninas relatam maior sensação de exclusão em áreas de tecnologia. Valores baixos da variável tendem a associar-se ao público masculino, o que reforça achados da literatura sobre experiências diferenciadas de inclusão em áreas de tecnologia.
+
+\subsubsection{Restrição de Atividades por Motivo de Gênero (\textit{activityGenderRestriction})}
+
+Valores altos indicam que a pessoa já deixou de realizar atividades por questões de gênero. Observa-se maior frequência de respostas elevadas entre meninas, embora alguns meninos também reportem valores altos, possivelmente por interpretação mais ampla da pergunta. Essa variável destaca diferenças de percepção sobre barreiras sociais relacionadas a gênero.
+
+\subsubsection{Opinião sobre Profissões por Gênero (\textit{professionsByGenderOpinion})}
+
+Valores altos refletem maior concordância com a ideia de que algumas profissões são mais adequadas a um gênero. Valores elevados foram mais associados a meninos, enquanto valores baixos foram mais frequentes entre meninas. Isso indica que meninas tendem a rejeitar estereótipos profissionais com maior intensidade.
+
+\subsubsection{Percepção de que STEM Nunca Foi Para Mim (\textit{feltSTEMNotForMeEver})}
+
+Valores altos dessa variável indicam que o respondente já sentiu que STEM não era para ele/ela. No gráfico, observa-se que respostas elevadas estão concentradas no gênero feminino, sugerindo que meninas apresentam maior tendência a se afastar de STEM em algum momento, reforçando questões de pertencimento e autoconfiança.
+
+\subsubsection{Interesse em Carreira STEM (\textit{stemCareerInterest})}
+
+Esta variável mostra a disposição em seguir carreiras em STEM. Curiosamente, valores médios ou baixos aparecem mais associados a meninas, enquanto meninos tendem a indicar interesse mais intenso. Essa diferença pode refletir fatores de autoconfiança ou percepção de oportunidade em STEM.
+
+\subsubsection{Admiração por Professores (\textit{admiredExactTeachersGender})}
+
+Valores mais altos indicam que o respondente admira professores de um gênero específico. Pontos vermelhos (maior probabilidade de feminino) concentram-se em respostas indicando admiração por professores do gênero feminino ou ambos, sugerindo que meninas tendem a reconhecer figuras de autoridade em diferentes gêneros, enquanto meninos apresentam tendencia a admirarem professores de exatas do gênero masculino ou nenhum professor.
+
+\subsubsection{Interesse Escolar por Gênero (\textit{schoolExactInterestByGender})}
+
+Esta variável mede a percepção dos estudantes em relação a quem possui maior interesse em certas matérias conforme o gênero. Meninas (pontos vermelhos) tendem a relatar que meninos possuem mais interesse ou não veem diferença, enquanto os meninos tendem a relatar que meninas possuem mais interesse nessas disciplinas. 
+
+\subsubsection{Percepção do Desempenho Escolar Familiar (\textit{familySchoolPerformanceValue})}
+
+Valores mais altos dessa variável indicam maior valorização familiar do desempenho escolar. Muitas das meninas tendem a apresentar valores mais baixos dessa variável, indicando que sentem menor valorização familiar em relação ao desempenho escolar, enquanto meninos tendem a apresentar valores mais altos, sugerindo maior reconhecimento familiar.
+
+\subsubsection{Resumo}
+
+A análise das oito variáveis selecionadas mostra um padrão consistente: características relacionadas à exclusão percebida, restrições por gênero, experiências passadas e incentivo familiar estão fortemente associadas ao gênero feminino. Esse padrão reforça evidências da literatura sobre a influência de fatores sociais e psicológicos na decisão de meninas e meninos de se engajar em carreiras STEM.
+
+\subsection{Análise Comparativa por Gênero: Modelos para Mulheres e Homens}
+
+Para aprofundar a compreensão das diferenças entre percepções e fatores associados ao interesse em STEM, os dados foram separados por gênero. Para cada grupo foi treinado um modelo de Random Forest com o objetivo de prever o quanto a pessoa consegue se imaginar em uma carreira em áreas de STEM, e em seguida aplicaram-se gráficos de SHAP individuais. Essa abordagem permite observar como diferentes fatores influenciam de maneira distinta o interesse de mulheres e homens por carreiras STEM.
+
+\subsubsection{Diversidade dos Gráficos e Diferença no Volume de Respostas}
+
+Inicialmente, é válido destacar que o gráfico de SHAP masculino apresenta maior diversidade e espalhamento de pontos, decorrente da maior quantidade de respostas de pessoas do gênero masculino. Esse desequilíbrio amostral influencia a variabilidade visual representada no gráfico, tornando-o mais denso e heterogêneo.
+
+\subsubsection{Similaridades Entre os Modelos: Interesse Prévio em STEM}
+
+Nos dois modelos analisados, tanto para mulheres quanto para homens, o interesse prévio em STEM destaca-se como uma das variáveis mais influentes na previsão da capacidade do estudante de se visualizar trabalhando em carreiras de STEM. Essa relação é intuitiva, uma vez que estudantes que demonstram afinidade e gosto pela área tendem naturalmente a imaginar-se atuando em carreiras de STEM, pois já possuem maior familiaridade, motivação e identificação com esses conteúdos. Além disso, em oitavo lugar nos dois modelos, aparece a variável que avalia a importância do reconhecimento acadêmico por parte de professores. Essa variável indica que sentir-se reconhecido, incentivado ou valorizado pelos docentes está positivamente associado ao alvo (capacidade de se visualizar atuando em uma carreira STEM), tanto para meninas quanto para meninos, sugerindo que práticas pedagógicas de apoio podem desempenhar papel relevante na motivação dos estudantes.
+
+\subsubsection{Sentimento de “STEM Não é Para Mim”}
+
+Um dos achados mais expressivos está na variável \textit{feltSTEMNotForMe}. Esse item aparece como a terceira variável mais importante entre as meninas, e como a quinta entre os meninos. Esse resultado indica que o sentimento de que STEM “não é para elas” exerce influência significativamente mais forte sobre a autopercepção das mulheres. Esse achado está em consonância com a análise global, onde sentimentos de exclusão se mostraram fortemente associados ao gênero feminino. Embora o valor absoluto dessa variável não apresente diferenças tão acentuadas entre meninas que gostam ou não de STEM, o modelo consegue identificar nuances suficientes que tornam essa percepção mais determinante para elas.
+
+
+\subsubsection{Estereótipos de Profissão e Interesse Masculino em STEM}
+
+Entre os meninos, a variável relacionada à opinião sobre profissões por gênero aparece como a segunda mais importante. O SHAP indica que meninos que conseguem se enxergar em carreiras em STEM tendem a reproduzir menos estereótipos de gênero, enquanto aqueles que não conseguem se visualizar trabalhando em STEM ou apresentam pouco envolvimento com a área manifestam maior adesão a esses estereótipos.
+
+\subsubsection{Sentimento de Exclusão: Presente no Modelo Masculino, Ausente no Feminino}
+
+Outro ponto relevante é que a variável \textit{feelingExcludedTech} aparece entre as mais importantes no modelo masculino, mas não figura entre as principais no modelo feminino. Isso ocorre porque a grande maioria das meninas — mesmo aquelas que afirmam gostar de STEM — relata algum nível de sentimento de exclusão em contextos tecnológicos. Esse padrão já havia se destacado na análise conjunta, em que o sentimento de exclusão foi a principal variável para diferenciar gênero. Dessa forma, dentro do grupo feminino, a variável apresenta baixa variabilidade, o que reduz sua capacidade de discriminar quais estudantes conseguem se imaginar atuando em STEM. Entre os meninos, porém, essa percepção varia de forma mais expressiva, fazendo com que \textit{feelingExcludedTech} contribua de maneira mais significativa para o modelo masculino.
+
+\subsubsection{Admiração por Professores de Exatas}
+
+Na análise feminina, destaca-se a presença da variável \textit{admiredExactTeacherGender}, ausente entre as mais relevantes no modelo masculino. Esse resultado indica que meninas que conseguem se enxergar atuando em áreas de STEM tendem a admirar professores de exatas do gênero feminino ou de ambos (valores mais baixos), enquanto aquelas que não conseguem se imaginar com muita clareza nessas áreas tendem a admirar professores do gênero masculino ou nenhum professor (valores mais altos).
+
+
+
+\begin{figure}[H]
+  \centering
+  \caption{Gráfico de SHAP para o modelo de classificação sobre visão de futuro em STEM - Feminino}
+  \includegraphics[width=0.9\textwidth]{images/feminino_stem/shap2.png}
+  \label{fig:shap_feminino_future}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \caption{Gráfico de SHAP para o modelo de classificação sobre visão de futuro em STEM - Masculino}
+  \includegraphics[width=0.9\textwidth]{images/masculino_stem/shap2.png}
+  \label{fig:shap_masculino_future}
+\end{figure}
+
+
+
+\section{Formação e Interpretação dos Grupos}
+
+Após a identificação das oito variáveis mais relevantes pelo modelo Random Forest com SHAP na análise geral, procedeu-se à formação de grupos (\textit{clusters}) utilizando a técnica de \textit{clustering} hierárquico. O objetivo desta etapa foi verificar se os respondentes apresentavam padrões semelhantes de comportamento ou percepção, e se esses padrões permitiam a formação de perfis distintos de estudantes.
+
+As oito \textit{features} utilizadas como base para essa etapa foram: \textit{feelingExcludedTech}, \textit{activityGenderRestriction}, \textit{professionsByGenderOpinion}, \textit{feltSTEMNotForMeEver}, \textit{stemCareerInterest}, \textit{admiredExactTeachersGender}, \textit{schoolExactInterestByGender} e \textit{familySchoolPerformanceValue}. Essas variáveis foram selecionadas por representarem os fatores mais importantes para diferenciação entre os gêneros na análise anterior, o que justificou sua utilização como descritores dos possíveis perfis.
+\subsection{Construção da Estrutura Hierárquica}
+Para a formação dos grupos foi aplicado o método hierárquico aglomerativo com ligação de Ward, que busca minimizar a variância interna durante a junção dos grupos. O dendrograma resultante, apresentado na Figura \ref{fig:dendrograma}, permite visualizar a forma como as amostras se agrupam ao longo do processo de fusão, bem como as distâncias às quais as junções ocorrem.
+
+Ao observar o dendrograma, nota-se a presença de dois grandes blocos claramente separados, o que já indica a possibilidade de existência de dois grupos bem definidos entre os respondentes. A separação visual observada no gráfico sugere que os estudantes apresentam dois padrões predominantes de respostas nas variáveis analisadas.
+\begin{figure}[H]
+  \centering
+
+  \caption{Dendrograma da Análise de Clusters Hierárquica}
+  \includegraphics[width=0.9\textwidth]{images/geral_stem/dendrograma2.png}
+  \label{fig:dendrograma}
+\end{figure}
+\subsection{Determinação do Número Ideal de Clusters}
+
+Para corroborar a indicação visual do dendrograma, aplicou-se o método do cotovelo, conforme a Figura \ref{fig:cotovelo}. A análise da soma das variâncias intra-grupo revelou uma queda acentuada ao se passar de um para dois clusters, seguida de uma redução significativamente menor a partir de três grupos. Esse comportamento caracteriza o “cotovelo” clássico no ponto correspondente a dois clusters. 
+
+\begin{figure}[H]
+  \centering
+  \caption{Análise do Cotovelo para Determinação do Número de Clusters}
+  \includegraphics[width=0.9\textwidth]{images/geral_stem/cotovelo2.png}
+  \label{fig:cotovelo}
+\end{figure}
+\subsection{Estrutura e Tamanho dos Clusters}
+
+Os dois grupos formados apresentam tamanhos distintos: o \textbf{Cluster 1} com 25 participantes e o \textbf{Cluster 2} com 63 participantes. A distribuição de gênero indica uma diferença marcante entre os grupos: o Cluster 1 possui maioria masculina (21 homens e apenas 4 mulher), enquanto o Cluster 2 apresenta uma composição mais equilibrada (24 mulheres e 39 homens). Esse desequilíbrio sugere, desde o início, que os clusters podem refletir diferenças de percepção associadas ao gênero e potencialmente relacionadas às barreiras ou estímulos vinculados ao interesse por STEM.
+
+\subsection{Interpretação dos Perfis Identificados}
+
+A Tabela no Apêndice~\ref{apendiceA} (resultante dos cruzamentos das variáveis com os clusters) permite inferir características marcantes de cada grupo.
+
+
+\subsubsection*{Cluster 1: Perfil com maior interesse e engajamento em STEM }
+
+
+
+O Cluster 1, mais numeroso, apresenta os seguintes padrões:
+
+\begin{itemize}
+\item Menor percepção de exclusão (\textit{feelingExcludedTech}) e menor influência de restrições por gênero (\textit{activityGenderRestriction});
+\item Menor concordância com estereótipos de gênero em profissões (\textit{professionsByGenderOpinion}) e apreciação mais equilibrada de professores (\textit{admiredExactTeachersGender});
+\item Maior histórico de sentimento de STEM “para mim” (\textit{feltSTEMNotForMeEver} concentra-se em níveis mais altos, indicando que muitos se sentiram aptos à área) e maior interesse declarado em seguir carreira em STEM (\textit{stemCareerInterest});
+\item Maior envolvimento em atividades escolares (\textit{schoolExactInterestByGender}) e percepção mais positiva do desempenho familiar (\textit{familySchoolPerformanceValue}).
+\end{itemize}
+
+Esse perfil indica maior engajamento, interesse consolidado em STEM e menor percepção de barreiras ou estereótipos de gênero, compatível com o equilíbrio de gênero observado no cluster.
+
+
+\subsubsection*{Cluster 2: Perfil mais sensível à exclusão e menor engajamento em STEM}
+
+O Cluster 2 reúne predominantemente mulheres e apresenta as seguintes características:
+
+\begin{itemize}
+\item Valores elevados em \textit{feelingExcludedTech} e \textit{feltSTEMNotForMeEver}, indicando maior percepção de exclusão em ambientes de tecnologia e maior restrição de atividades por gênero;
+\item Maior concordância com estereótipos de profissões (\textit{professionsByGenderOpinion}) e certa valorização de professores do gênero predominante (\textit{admiredExactTeachersGender});
+\item Menor interesse prévio por STEM (\textit{feltSTEMNotForMeEver} indica que poucos se sentiram excluídos permanentemente, mas ainda existe percepção de barreira) e menor interesse declarado em seguir carreira em STEM (\textit{stemCareerInterest} apresenta concentração em níveis intermediários);
+\item Menor envolvimento em atividades escolares de interesse por gênero (\textit{schoolExactInterestByGender}) e percepção intermediária de desempenho familiar (\textit{familySchoolPerformanceValue}).
+\end{itemize}
+
+Esse perfil sugere um grupo com maior sensibilidade a barreiras de gênero e percepções de exclusão em STEM, com engajamento intermediário, refletindo a predominância feminina no cluster.
+
+\subsection{Síntese Interpretativa dos Grupos}
+
+Os resultados confirmam que a segmentação em dois clusters reflete diferenças estruturais relevantes entre os estudantes, especialmente no que diz respeito a interesse por STEM, percepção de exclusão e internalização de estereótipos de gênero.
+
+O \textbf{Cluster 2} é caracterizado por maior sensibilidade a barreiras de gênero e menor engajamento em STEM, proporcionalmente (considerando a quantidade de respondentes de cada gênero) com maior presença feminina, enquanto o \textbf{Cluster 1} demonstra maior motivação, interesse consolidado e menor percepção de restrições de gênero, proporcionalmente com maior presença masculina.
+
+\subsection{Visualização Comparativa dos Perfis por Cluster}
+
+A Figura~\ref{fig:radar_clusters} apresenta um gráfico do tipo radar com as médias normalizadas das oito \textit{features} utilizadas na clusterização. O gráfico evidencia as divergências entre os clusters:
+
+\begin{itemize}
+  \item \textbf{Cluster 1}: valores mais altos em \textit{stemCareerInterest}, \textit{schoolExactInterestByGender} e \textit{familySchoolPerformanceValue}, evidenciando maior interesse em STEM, maior engajamento escolar e suporte familiar mais consistente.
+\item \textbf{Cluster 2}: valores mais altos em \textit{feelingExcludedTech}, \textit{feltSTEMNotForMeEver} e \textit{professionsByGenderOpinion}, indicando maior percepção de exclusão e estereótipos de gênero;
+\end{itemize}
+
+O gráfico permite compreender de forma intuitiva a estrutura e as diferenças qualitativas entre os grupos, reforçando os padrões observados nas análises numéricas e na segmentação hierárquica.
+
+\begin{figure}[H]
+    \centering
+    \caption{Gráfico de radar comparativo entre os clusters}
+    \includegraphics[width=0.9\textwidth]{images/geral_stem/aranha2.png}
+    \label{fig:radar_clusters}
+\end{figure}
+
+
+
+
+

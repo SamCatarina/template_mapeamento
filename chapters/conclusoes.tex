@@ -1,0 +1,29 @@
+% ----------------------------------------------------------
+\chapter{Conclusões}\label{conclusoes}
+% ----------------------------------------------------------
+
+Este trabalho partiu da observação de um padrão de distribuição de gênero nas diferentes áreas do conhecimento: embora as mulheres sejam maioria no Ensino Superior brasileiro, sua presença permanece concentrada em determinadas áreas, com sub-representação nas carreiras de STEM. A motivação central foi compreender os fatores que influenciam a escolha de curso superior e identificar perfis de estudantes capazes de explicar, parcial ou totalmente, essa desigualdade de representatividade. Buscou-se, com isso, fornecer subsídios empíricos que possam orientar políticas e práticas de incentivo ao ingresso e à permanência das mulheres em áreas científicas e tecnológicas.
+
+Em alinhamento a essa motivação, os objetivos propostos foram atendidos de forma parcial e coerente com o escopo da pesquisa: elaborou-se e aplicou-se um instrumento de coleta de dados em instituições de ensino superior da região do Sertão Central de Pernambuco; realizou-se análise exploratória dos dados; treinou-se um modelo supervisionado explicável (Random Forest + interpretação por valores SHAP) para identificar variáveis associadas a diferenças de gênero e interesse por STEM; e empregou-se uma técnica de clusterização hierárquica (método de Ward) para mapear perfis de estudantes a partir das principais variáveis identificadas.
+
+Metodologicamente, a pesquisa combinou técnicas quantitativas clássicas e modernas: processamento e codificação das respostas do questionário, análise exploratória, modelagem supervisionada com Random Forest e interpretação de importância e direção de efeito via SHAP, seguida de clusterização hierárquica com validação visual pelo dendrograma e método do cotovelo. Essa combinação permitiu não apenas identificar quais variáveis se associam com maior força às diferenças por gênero, mas também descrever agrupamentos de respondentes com perfis similares.
+
+Os principais achados podem ser sumarizados do seguinte modo:
+
+- A percepção de exclusão em ambientes de tecnologia (\textit{feelingExcludedTech}) emergiu como a variável mais relevante para distinguir perfis de gênero. Valores mais altos dessa variável estão fortemente associados ao público feminino, apontando para um problema de percepção e pertencimento que pode limitar a intenção de seguir carreiras tecnológicas.
+- A ocorrência de restrição de atividades por motivo de gênero e a concordância com estereótipos sobre profissões também se mostraram importantes para diferenciação entre os grupos, indicando que normas e representações sociais continuam a influenciar escolhas e autopercepções.
+- Incentivo familiar para os estudos e interesse prévio por disciplinas de exatas apareceram como fatores positivos associados ao maior interesse em seguir carreira em STEM.
+- A análise por cluster revelou dois perfis principais: o Cluster 1 (predominantemente masculino na amostra) caracterizado por menor identificação com STEM, maior concordância com estereótipos e menor incentivo familiar; e o Cluster 2 (mais heterogêneo) com maior interesse prévio em exatas, maior incentivo familiar e menor internalização de estereótipos.
+
+Apesar das contribuições, a pesquisa tem limitações relevantes que merecem ser destacadas. A amostra é relativamente pequena (n = 88), com distribuição de gênero e composição institucional que limitam a generalização dos resultados para outras regiões ou para populações maiores. Algumas variáveis apresentaram baixa variabilidade dentro de subgrupos (por exemplo, sentimento de exclusão muito presente entre as mulheres), o que reduz sua capacidade discriminatória em análises estratificadas. Finalmente, escolhas de codificação e normalização de categorias, necessárias para a modelagem, podem inserir arbitrariedades que influenciam interpretações numéricas e comparações.
+
+Em termos de contribuição, o estudo agrega: (i) um levantamento empírico localizado sobre percepções de gênero e interesse em STEM no município de Salgueiro–PE; (ii) a aplicação integrada de modelos explicáveis (SHAP) e técnicas de clusterização para mapear perfis de estudantes, ampliando a compreensão sobre como fatores psicossociais e contextuais se organizam; e (iii) o desenvolvimento (conforme proposto nas seções anteriores) de uma plataforma de divulgação de pesquisadoras brasileiras, que busca aumentar a visibilidade de modelos de referência e reduzir barreiras de representação.
+
+
+
+
+\section{Trabalhos futuros}
+
+Para trabalhos futuros, recomenda-se: ampliar a amostra e diversificar a abrangência geográfica para aumentar a robustez e a generalização dos achados; realizar desenhos longitudinais que permitam observar trajetórias e efeitos temporais (por exemplo, observando se intervenções de mentoria modificam intenção e permanência em STEM); incorporar métodos mistos, incluindo entrevistas qualitativas com estudantes e familiares, para aprofundar a compreensão das causas subjacentes aos sentimentos de exclusão e às dinâmicas de incentivo familiar; testar intervenções experimentais (programas de mentoria, oficinas com modelos femininos em STEM, mudanças curriculares) e avaliar seu impacto; e explorar outras técnicas de agrupamento e validação (por exemplo, LPA, clustering baseado em mistura ou validação em amostras externas).
+
+Conclui-se que, embora não exista solução única para a sub-representação feminina em STEM, a combinação de políticas institucionais (mais modelos de referência, práticas pedagógicas acolhedoras), ações familiares e intervenções locais informadas por evidência empírica pode contribuir para reduzir barreiras percebidas e ampliar o sentido de pertencimento. Espera-se que os resultados aqui apresentados sirvam como ponto de partida para ações contextuais no Sertão Central de Pernambuco e como base para pesquisas ampliadas sobre o tema.

@@ -2,11 +2,11 @@
 \chapter{Introdução}\label{cap1}
 % ----------------------------------------------------------
 
-De acordo com dados do Censo da Educação Superior de 2023 \cite{inep2023}, no Brasil, as mulheres representam a maioria tanto entre os ingressantes (59,4\%) quanto entre os concluintes (59,6\%) do Ensino Superior. No entanto, uma análise mais aprofundada revela um padrão significativo na distribuição de gênero entre as diferentes áreas do conhecimento. Enquanto cursos das áreas de Saúde e Educação apresentam predominância feminina, os cursos de Ciências Exatas e Tecnologias são majoritariamente ocupados por homens.
+De acordo com dados do Censo da Educação Superior de 2023 \cite{inep2023}, no Brasil, as mulheres representam a maioria tanto entre os ingressantes (59,4\%) quanto entre os concluintes (59,6\%) do Ensino Superior. No entanto, a analise da quantidade de alunos por gênero nos cursos revela um padrão significativo na distribuição de gênero entre as diferentes áreas do conhecimento. Enquanto cursos das áreas de Saúde e Educação apresentam predominância feminina, os cursos de Ciências Exatas e Tecnologias são majoritariamente ocupados por homens.
 
 Apesar de serem maioria no Ensino Superior, a presença feminina permanece concentrada em determinadas áreas. Esse cenário leva à reflexão sobre os motivos pelos quais, mesmo com o avanço no acesso à educação superior pelas mulheres, a sub-representação em campos como Ciência, Tecnologia, Engenharia e Matemática (STEM, na sigla em inglês) ainda persiste. A desigualdade de gênero nessas áreas não parece estar relacionada à ausência de mulheres no ambiente universitário, mas sim a fatores mais profundos que influenciam suas escolhas acadêmicas e profissionais.
 
-Diversos estudos apontam que essas escolhas são moldadas desde cedo por uma combinação de fatores psicológicos \cite{master2021}, influências familiares \cite{hsieh2022} e condições socioeconômicas \cite{morales2021}. Desde a infância, meninas e meninos são expostos a estereótipos que moldam suas percepções sobre si mesmos e determinam expectativas sociais relacionadas ao comportamento e às áreas de interesse \cite{master2021}. Tais papéis de gênero, incentivados desde a infância, reforçam a ideia de funções distintas para homens e mulheres na sociedade, contribuindo diretamente para a disparidade nas áreas STEM (Science, Technology, Engineering and Mathematics — Ciência, Tecnologia, Engenharia e Matemática) \cite{mcguire2022}. Esses estereótipos são disseminados em diversos contextos — familiar, educacional e midiático — sendo reconhecidos como um dos principais agravantes da desigualdade de gênero nessas áreas \cite{silva2022}.
+Diversos estudos apontam que essas escolhas são moldadas desde cedo por uma combinação de fatores psicológicos \cite{master2021}, influências familiares \cite{hsieh2022} e condições socioeconômicas \cite{morales2021}. Desde a infância, meninas e meninos são expostos a estereótipos que moldam suas percepções sobre si mesmos e determinam expectativas sociais relacionadas ao comportamento e às áreas de interesse \cite{master2021}. Tais papéis de gênero, incentivados desde a infância, reforçam a ideia de funções distintas para homens e mulheres na sociedade, contribuindo diretamente para a disparidade nas áreas STEM \cite{mcguire2022}. Esses estereótipos são disseminados em diversos contextos (como familiar, educacional e midiático) sendo reconhecidos como um dos principais agravantes da desigualdade de gênero nessas áreas \cite{silva2022}.
 
 Além dos estereótipos, o suporte familiar, o ambiente escolar e o contexto socioeconômico exercem grande influência sobre as escolhas e interesses das meninas, podendo desmotivá-las a seguir carreiras nas áreas de Ciência e Tecnologia. Fatores como a necessidade de conciliar trabalho e estudo, a carga horária dos cursos, a valorização de formações mais voltadas ao mercado de trabalho e as diferenças entre as oportunidades disponíveis em cidades do interior e nas capitais também impactam essas decisões. Em muitos casos, as capitais oferecem uma maior variedade de cursos e instituições \cite{inep2023}, mas também apresentam um custo de vida mais elevado, o que pode representar uma barreira para estudantes de baixa renda.
 
@@ -15,12 +15,12 @@ Além dos estereótipos, o suporte familiar, o ambiente escolar e o contexto soc
 O desenvolvimento desse trabalho foi elaborado com objetivo de responder as seguintes questões de pesquisa:
 
 \begin{description}
-    \item[QP02] De que forma os fatores psicossociais, familiares, educacionais e socioeconômicos identificados se associam ao interesse declarado em seguir carreira nas áreas de STEM, considerando possíveis moderações por gênero e contexto regional?
-    \item[QP03] Quais variáveis — e em que direção — emergem como mais influentes para distinguir gêneros e o interesse por STEM no ensino superior do Sertão Central Pernambucano?
-    \item[QP04] Como métodos de explicabilidade de IA (por exemplo, Random Forest combinada com SHAP) podem esclarecer as contribuições individuais e globais dessas variáveis, validar a interpretação dos perfis obtidos por clusterização e subsidiar recomendações de intervenção educativa locais?
+    \item[QP01] De que forma os fatores psicossociais, familiares, educacionais e socioeconômicos se associam ao interesse declarado em seguir carreira nas áreas de STEM, considerando possíveis moderações por gênero e contexto regional?
+    \item[QP02] Quais variáveis (e em que direção) emergem como mais influentes para distinguir gêneros e o interesse por STEM no ensino superior do Sertão Central Pernambucano?
+    \item[QP03] Como métodos de IA podem esclarecer as contribuições individuais das variáveis influentes e subsidiar recomendações de intervenção educativa locais?
 \end{description}
 
-Buscar respostas para essa pergunta exige, antes de tudo, um olhar atento aos desafios enfrentados pelas meninas desde cedo — desafios que podem ser sociais, econômicos, culturais ou educacionais — e que acabam influenciando suas decisões acadêmicas e profissionais. Ao mesmo tempo, é fundamental compreender o que leva algumas meninas, mesmo diante de tantos obstáculos, a persistirem e ocuparem espaços em áreas onde ainda são minoria.
+Buscar respostas para essas perguntas exige, antes de tudo, um olhar atento aos desafios enfrentados pelas meninas desde cedo e que acabam influenciando suas decisões acadêmicas e profissionais. Ao mesmo tempo, é fundamental compreender o que leva algumas meninas, mesmo diante de tantos obstáculos, a persistirem e ocuparem espaços em áreas onde ainda são minoria.
 
 
 \section{Objetivos}
@@ -29,26 +29,28 @@ Os objetivos deste trabalho são subdivididos em objetivos gerais e objetivos es
 
 \subsection{Objetivo Geral}
 
-nvestigar os fatores que contribuem para as diferenças de gênero e para as percepções de pertencimento em áreas STEM, utilizando técnicas de aprendizado de máquina explicável e métodos de clusterização, no contexto de estudantes universitários do Sertão Central de Pernambuco.
+Investigar os fatores que influenciam as percepções de pertencimento e exclusão de gênero em áreas STEM, a partir da aplicação de técnicas de aprendizado de máquina explicável e de agrupamento de dados, considerando o contexto de estudantes universitários do Sertão Central de Pernambuco.
 \subsection{Objetivos Específicos}
 
 Os objetivos específicos são:
 
 \begin{itemize}
+    \item Revisar a literatura sobre disparidade de gênero em STEM, com foco em fatores psicossociais, familiares, educacionais e socioeconômicos que influenciam as escolhas acadêmicas e profissionais das mulheres;
    \item Elaborar e aplicar um questionário em instituições públicas e privadas de ensino superior da região do Sertão Central de Pernambuco, concebido para identificar fatores motivacionais, contextuais e psicossociais (incluindo medidas de pertencimento, exclusão e interesse por STEM) e variáveis demográficas relevantes;
 
-\item Realizar uma análise exploratória dos dados coletados, identificando padrões, tendências e associações entre variáveis, bem como realizando tratamento de dados, codificação e verificação de consistência para suportar etapas posteriores de modelagem;
+\item Realizar uma análise exploratória dos dados coletados, identificando padrões e tendências nas respostas das participantes;
 
-\item Treinar e validar um modelo de aprendizado de máquina supervisionado e explicável (por exemplo Random Forest), com separação treino/teste e validação cruzada, visando identificar padrões associados a gênero e interesse em STEM; estimar importâncias globais (permuta / OOB) e produzir explicações locais e globais usando SHAP (TreeExplainer) para interpretar direção e magnitude das contribuições das variáveis;
+\item Treinar um modelo de aprendizado de máquina supervisionado e explicável a fim de identificar padrões de resposta relacionados às percepções sobre áreas STEM sob a óptica de gênero.
 
-\item Aplicar técnicas de agrupamento (por exemplo, clusterização hierárquica com método de Ward) para identificar perfis distintos de estudantes com base nas variáveis mais relevantes; selecionar o número de clusters por métodos como elbow e silhouette e integrar os resultados de clusterização com as explicações de IA para validação interpretativa dos perfis;
+\item Aplicar técnicas de agrupamento para identificar perfis distintos de estudantes com base nas percepções de pertencimento e exclusão de
+gênero em áreas de STEM.
 
-\item Analisar e interpretar os grupos formados, descrevendo características predominantes em cada cluster, relacionando-as às explicações do modelo.
+\item Analisar e interpretar os grupos formados, discutindo as características predominantes em cada cluster e suas implicações para a compreensão dos fatores de exclusão e pertencimento de gênero em contextos universitários.
 
 \end{itemize}
 
 \section{Justificativa}
-Este trabalho se justifica por buscar compreender as razões que sustentam a baixa representatividade feminina nas áreas STEM, mesmo em um contexto nacional no qual as mulheres já são maioria no Ensino Superior. Embora esse fenômeno seja amplamente discutido em grandes centros urbanos, pouco se sabe sobre como ele se manifesta em regiões interioranas, como o Sertão Central de Pernambuco — e, de forma ainda mais específica, na cidade de Salgueiro. Assim, este estudo pretende contribuir para a compreensão das barreiras e motivações que moldam o interesse por STEM no interior nordestino, unindo análise de dados, técnicas explicáveis de aprendizado de máquina e identificação de perfis de estudantes a partir de métodos de clusterização.
+Este trabalho se justifica por buscar compreender as razões que sustentam a baixa representatividade feminina nas áreas STEM, mesmo em um contexto nacional no qual as mulheres já são maioria no Ensino Superior. Embora esse fenômeno seja amplamente discutido em grandes centros urbanos, pouco se sabe sobre como ele se manifesta em regiões interioranas, como o Sertão Central de Pernambuco. Assim, este estudo pretende contribuir para a compreensão das barreiras e motivações que moldam o interesse por STEM no interior nordestino, unindo análise de dados, técnicas explicáveis de aprendizado de máquina e identificação de perfis de estudantes a partir de métodos de clusterização.
 
 \section{Organização do Trabalho}
 
